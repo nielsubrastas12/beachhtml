@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bolinao Beach Club</title>
+  
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      font-family: 'Times New Roman', serif;
+      font-style: italic; 
+    }
+
+    .container {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+    }
+
+    img {
+      display: block;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+    }
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: rgba(255, 255, 255, 0);
+      padding: 10px 0;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      z-index: 10;
+    }
+
+    .navbar a {
+      color: white;
+      text-decoration: none;
+      font-size: 1.2em;
+      font-weight: bold;
+      padding: 10px 20px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      border-radius: 5px;
+    }
+
+    .navbar a:hover {
+      background-color: rgba(255, 255, 255, 0);
+      color: black;
+    }
+
+    .sub-text {
+      position: absolute;
+      top: 20%;
+      left: 50%;
+      transform: translate(-50%, 0);
+      color: rgb(255, 255, 255);
+      font-size: 3em;
+      font-weight: 400;
+      text-shadow: 3px 1px 3px rgba(0, 0, 0, 0.8);
+      text-align: center;
+      opacity: 0;
+      transition: transform 2s ease-in-out, opacity 2s ease-in-out;
+    }
+
+    .centered-text {
+      position: absolute;
+      top: 30%;
+      left: 50%;
+      transform: translate(-50%, 0);
+      color: white;
+      font-size: 4em;
+      font-weight: bold;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.884);
+      text-align: center;
+      opacity: 0;
+      transition: transform 1s ease-in-out, opacity 1s ease-in-out;
+    }
+
+    .button-container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      gap: 40px; 
+    }
+
+    .button {
+      background-color: rgba(250, 246, 246, 0);
+      color: rgb(241, 241, 241);
+      padding: 20px 50px; 
+      font-size: 1.5em; 
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 10px; 
+      box-shadow: 3px 3px 6px rgb(0, 0, 0);
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .button:hover {
+      background-color: rgba(255, 244, 244, 0.438);
+      color: rgb(255, 255, 255);
+      transform: scale(1.1);
+    }
+
+    .small-text {
+      position: absolute;
+      top: 10px;
+      left: 30px;
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 1.5em;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+    }
+
+    .visible {
+      opacity: 1;
+      transform: translate(-50%, -50%);
+    }
+
+    .second-page {
+      height: 100vh;
+      background-image: url('https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi3zXNS0J7RWH9QErJF1MR9drdgJ8aWimSfXDolgpmoSh5wIhwiYrabTLVXCices5wvxvLcFjhO2IPM00zgzR9a6xVgs8Mh9A28mhr-fFDKau920bOQI_rqJyqANJcYz7TyJuYobw792jw/s1600/DSC_0953.JPG'); /* Replace with your image URL */
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    }
+
+    .second-page h1 {
+      font-size: 3em;
+      margin-bottom: 20px;
+    }
+
+    .second-page img {
+      max-width: 80%;
+      height: auto;
+      border: 2px solid #ccc;
+    }
+    
+    
+   
+    @media (max-width: 768px) {
+      .sub-text {
+        font-size: 2em;
+      }
+
+      .centered-text {
+        font-size: 3em;
+      }
+
+      .button {
+        padding: 15px 30px;
+        font-size: 1em;
+      }
+
+      .button-container {
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .second-page img {
+        width: 90%;
+        height: auto;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .sub-text {
+        font-size: 1.5em;
+      }
+
+      .centered-text {
+        font-size: 2em;
+      }
+
+      .navbar {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .navbar a {
+        font-size: 1em;
+        padding: 5px 10px;
+      }
+
+      .button {
+        padding: 10px 20px;
+        font-size: 0.8em;
+      }
+      
+    }
+    .footer {
+    position: absolute; 
+    bottom: 20px; 
+    right: 20px; 
+    background-color: rgba(242, 233, 233, 0.882); 
+    color: rgb(10, 10, 10);
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 14px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(250, 249, 249, 0);
+    z-index: 10;
+}
+
+.footer p {
+    margin: 0;
+}
+
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <a href="#home">Home</a>
+    <a href="#second-page">About Us</a>
+    <a href="#third-page">Reserve</a>
+    <a href="#fourth-page">Contact Us</a>
+    <a href="#fifth-page">Gallery</a>
+  </div>
+
+  <div class="container" id="home">
+    <img src="https://scontent.fcrk1-5.fna.fbcdn.net/v/t1.15752-9/462555109_559079616880744_6032693480665662954_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=9f807c&_nc_eui2=AeFIerj8F4JQGyN-PQMy2y9576ig5UKKlHrvqKDlQoqUeo7hQj6nxv6WG26dAZnGe99bB6RylvjY_CKCiq2et6GD&_nc_ohc=WXSu-maSAc4Q7kNvgHpAy47&_nc_zt=23&_nc_ht=scontent.fcrk1-5.fna&oh=03_Q7cD1QEJFXQ6BPP4yKYOWt30ZEauyvPPzhfbJAth-33bpOVW-g&oe=675FAAB4" alt="Full Page Image">
+
+    <div class="small-text">Bolinao
+        <div class="footer-text">Beach Club</div>
+    </div>
+          
+    <h2 class="sub-text" id="subText">Welcome to Patar Bolinao Beach Club</h2>
+
+    <h1 class="centered-text" id="mainText">Best Day on the Beach</h1>
+
+    <div class="button-container">
+        <a href="#booking" class="button">Book Now</a>
+        <a href="#fourth-page" class="button">Contact Us</a>
+    </div>
+</div>
+
+<footer class="footer bottom-right">
+    <p>&copy; 2024 Patar Bolinao Beach Club. All rights reserved.</p>
+</footer>
+
+  <div class="second-page" id="second-page">
+    <h1>Bolinao Beach Club</h1>
+    
+    <div style="position: relative; width: 100%; height: 100%;">
+      <img src="https://res.cloudinary.com/manawa/image/upload/f_auto,c_limit,w_3840,q_auto/articles/most-beautiful-spots-for-your-first-scuba-dive/61396758347_kwukov" alt="First Image"
+           style="position: absolute; top: 10%; left: 5%; width: 500px; height: 550px; border: 2px solid #ccc; box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);">
+      
+      <img src="https://s3.amazonaws.com/a.storyblok.com/f/116532/1280x800/3b8fd69208/ph-day-club-los-angeles-beach-party.webp" alt="Second Image"
+           style="position: absolute; top: 50%; right: 10%; width: 600px; height: 300px; border: 2px solid #ccc; box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);">
+           
+           <p style="position: absolute; top: 5%; left: 45%; color: white; font-size: 1.2em; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); width: 50%; text-align: center;">
+            Join us for an unforgettable beach event, where sun, music, and community come together for a day of fun and relaxation at Patar, Bolinao Beach Club.
+        </p>
+        
+        <ul style="position: absolute; top: 20%; left: 45%; color: white; font-size: 1em; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); width: 50%; text-align: center; list-style-type: none; padding: 0; display: flex; justify-content: center;">
+          <li style="margin: 0 15px;">Beautiful Beach front location</li>
+          <li style="margin: 0 15px;">Music Festival</li>
+          <li style="margin: 0 15px;">Crystal clear water</li>
+          <li style="margin: 0 15px;">Scuba Diving</li>
+          <li style="margin: 0 15px;">Relaxing Beach Lounges</li>
+          <li style="margin: 0 15px;">Jetski</li>
+
+      </ul>
+    </div>
+  </div>
+
+  <!-- Inside the <body> tag -->
+<div class="third-page" id="third-page" 
+style="height: 120vh; background-image: url('https://images.unsplash.com/photo-1725825865698-c55b6fbdde98?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); 
+       background-size: cover; 
+       background-position: center; 
+       display: flex; 
+       flex-direction: column; 
+       justify-content: center; 
+       align-items: center; 
+       color: white; 
+       text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);">
+<!-- Combined Heading and Paragraph Section -->
+<div style="text-align: center; margin-bottom: 60px;">
+    <h1 style="font-size: 3em; margin-bottom: 10px;">Resorts Deals</h1>
+    <p style="font-size: 1.5em; max-width: 90%; text-align: center; margin-bottom: 40px;">
+        Join us for unforgettable ocean offers that include complimentary activities.
+    </p>
+</div>
+
+
+<div style="display: flex; justify-content: center; align-items: flex-start; gap: 20px; width: 80%;">
+   
+    <div style="background-color: rgba(255, 255, 255, 0.2); width: 40%; padding: 20px; border-radius: 10px; box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5); text-align: center;">
+        <img src="https://plus.unsplash.com/premium_photo-1672363353898-0818871046b3?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Package 1" 
+             style="width: 100%; max-height: 200px; object-fit: cover; border-radius: 10px; margin-bottom: 15px;">
+        <h2>Package 1</h2>
+        <h1>Food</h1>
+        <h3>Breakfast, Lunch, and Dinner.</h3>
+        <button id="bookNow1" style="padding: 10px 20px; border: none; background-color: white; color: black; border-radius: 5px; cursor: pointer; font-weight: bold;">Book Now</button>
+    </div>
+
+   
+    <div style="background-color: rgba(255, 255, 255, 0.2); width: 40%; padding: 20px; border-radius: 10px; box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5); text-align: center;">
+        <img src="https://images.unsplash.com/photo-1731336478850-6bce7235e320?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Package 2" 
+             style="width: 100%; max-height: 200px; object-fit: cover; border-radius: 10px; margin-bottom: 15px;">
+        <h2>Package 2</h2>
+        <h1>Accommodation</h1>
+        <h3>Location, Room, Amenities</h3>
+        <button id="bookNow2" style="padding: 10px 20px; border: none; background-color: white; color: black; border-radius: 5px; cursor: pointer; font-weight: bold;">Book Now</button>
+    </div>
+
+   
+    <div style="background-color: rgba(241, 240, 238, 0); width: 40%; padding: 20px; border-radius: 10px; box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5); text-align: center;">
+        <img src="https://plus.unsplash.com/premium_photo-1661843448781-3ee4d83fbd7b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Package 3" 
+             style="width: 100%; max-height: 200px; object-fit: cover; border-radius: 10px; margin-bottom: 15px;">
+        <h2>Package 3</h2>
+        <h1>Activities</h1>
+        <h3>Volleyball, Surfing, Jetski, Music Festival</h3>
+        <button id="bookNow3" style="padding: 10px 20px; border: none; background-color: white; color: black; border-radius: 5px; cursor: pointer; font-weight: bold;">Book Now</button>
+    </div>
+</div>
+</div>
+
+<div class="fourth-page" id="fourth-page" 
+     style="height: 120vh; 
+            background-image: url('https://images.unsplash.com/photo-1645445979172-5a14e21fd067?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); 
+            background-size: cover; 
+            background-position: center; 
+            display: flex; 
+            justify-content: flex-start; 
+            align-items: flex-start; 
+            color: white; 
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); padding: 20px;">
+
+    
+    <div style="flex: 1; display: flex; flex-direction: column; align-items: flex-start; gap: 20px;">
+
+        
+        <div style="display: flex; gap: 20px;">
+            <img src="https://www.roadaffair.com/wp-content/uploads/2020/10/friends-playing-beach-volleyball-shutterstock_55790740.jpg" alt="First Image"
+                 style="width: 100%; height: 500px; border: 2px solid #ccc; box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);">
+
+            <img src="https://cache.undercovertourist.com/blog/2021/07/0621-activities-beaches-banana-boat.jpg" alt="Second Image"
+                 style="width: 160%; height: 360px; border: 2px solid #ccc; box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);">
+        </div>
+
+       
+        <img src="https://greatadventures.com.au/gawp/wp-content/uploads/2016/09/GI-beach-activities-3.jpg" alt="Third Image"
+             style="width: 250%; height: 340px; border: 5px solid #ccc; box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);">
+    </div>
+
+   
+    <div style="flex: 1; max-width: 50%; padding-left: 40%; text-align: left;">
+        <h1 style="font-size: 3em; margin-bottom: 50px;">Contact Us</h1>
+        
+        <div class="email-container" style="margin-bottom: 40px;">
+            <h2>
+                <i class="fa-solid fa-envelope"></i> 
+                <a href="mailto:bolinaobeachclub@gmail.com" class="email-link">bolinaobeachclub@gmail.com</a>
+            </h2>
+        </div>
+        
+        <div class="contact-container" style="margin-bottom: 40px;">
+            <h2>
+                <a href="tel:+639123456789" class="phone-link">
+                    <i class="fa-solid fa-phone"></i>+63 912-345-6787
+                </a>
+            </h2>
+        </div>
+
+        <div class="location-container" style="margin-bottom: 40px;">
+            <h2>
+                <a href="https://www.google.com/maps/place/16%C2%B020'12.0%22N+119%C2%B047'34.0%22E/@16.336659,119%C2%B047%2334.0%22E/@16.336659,119.7901971,17z/data=!3m1!4b1!4m4!3m3!8m2!3d16.336659!4d119.792772?entry=ttu&g_ep=EgoyMDI0MTEyNC4xIKXMDSo%20ASAFQAw%3D%3D" class="location-link">
+                    <i class="fa-solid fa-location-dot"></i>Purok 10, Patar Bolinao 123
+                </a>
+            </h2>
+        </div>
+
+        <div style="margin-bottom: 40px;">
+            <h2 style="font-size: 2em;">Open Hours</h2>
+            
+            <h3 style="font-size: 1.5em; margin-bottom: 10px;">Mon-Fri: 9:00am-10:00pm</h3>
+            <h3 style="font-size: 1.5em;">Sat-Sun: 10:00am-12:00am</h3>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<div class="fifth" id="fifth-page" 
+     style="margin: 0; 
+            padding: 0; 
+            height: 100vh; 
+            width: 100vw;
+            background-image: url('https://images.unsplash.com/photo-1520277872024-58b40679ddb4?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); 
+            background-size: cover; 
+            background-repeat: no-repeat; 
+            background-position: center; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center; 
+            color: white; 
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);">
+
+  
+  <div class="image-layout" 
+       style="display: grid; 
+              grid-template-columns: 2fr 1fr; 
+              grid-template-rows: repeat(3, 1fr); 
+              gap: 20px; 
+              width: 90%; 
+              height: 80%; 
+              padding: 20px; 
+              background-color: rgba(209, 206, 206, 0.011); 
+              border-radius: 10px;">
+    
+   
+    <div style="grid-row: 1 / 4; grid-column: 1; position: relative; overflow: hidden; border-radius: 10px;">
+      <img src="https://quietly-image-uploads.s3.amazonaws.com/djplayingmusiconbeachparty_1280px_62b7396809804db69cd3c85b0f972c20.jpeg" alt="DJ Image"
+           style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px;">
+      <div style="position: absolute; bottom: 10px; left: 10px; color: white;">
+        <h3>Special Performance</h3>
+        <p>Sunday Best With DJ Zachary</p>
+      </div>
+    </div>
+    
+  
+    <div style="grid-row: 1; grid-column: 2; position: relative; overflow: hidden; border-radius: 10px;">
+      <img src="https://wallpaperaccess.com/full/1303342.jpg" alt="Cocktail Image"
+           style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px;">
+      <div style="position: absolute; bottom: 10px; left: 10px; color: white;">
+        <h3>Special Offers</h3>
+        <p>SURFING</p>
+      </div>
+    </div>
+    
+    
+    <div style="grid-row: 2; grid-column: 2; position: relative; overflow: hidden; border-radius: 10px;">
+      <img src="https://outsiderview.com/assets/images/thumbnails/woman-scuba-diving-coral-reef.jpg" alt=""
+           style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px;">
+      <div style="position: absolute; bottom: 10px; left: 10px; color: white;">
+        <h3>Special Offers</h3>
+        <p>SCUBA & SNORKELING</p>
+      </div>
+    </div>
+    
+    
+    <div style="grid-row: 3; grid-column: 2; position: relative; overflow: hidden; border-radius: 10px;">
+      <img src="http://www.darwinv8s.com.au/wp-content/uploads/2019/06/jetski1-2.jpg" alt="http://www.darwinv8s.com.au/wp-content/uploads/2019/06/jetski1-2.jpg"
+           style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px;">
+      <div style="position: absolute; bottom: 10px; left: 10px; color: white;">
+        <h3>Special Offers</h3>
+    <p>JET SKIS</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+         <div id="booking" style="background-color: #388edec4; padding: 40px 20px; text-align: center;">
+          <h2>Book Your Stay</h2>
+          <p>Fill out the form below to book your package.</p>
+          <form id="bookingForm" onsubmit="showPopup(event)" style="max-width: 600px; margin: auto; text-align: left;">
+        
+            <label for="package" style="font-weight: bold;">Select Package:</label>
+            <select id="package" name="package" style="width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px;">
+              <option value="Package 1">Package 1 - Food</option>
+              <option value="Package 2">Package 2 - Accommodation</option>
+              <option value="Package 3">Package 3 - Activities</option>
+            </select>
+            
+         
+            <label for="name" style="font-weight: bold;">Name:</label>
+            <input type="text" id="name" name="name" placeholder="Your Full Name" 
+                   style="width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px;" required>
+            
+      
+            <label for="email" style="font-weight: bold;">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Your Email" 
+                   style="width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px;" required>
+            
+  
+            <label for="phone" style="font-weight: bold;">Phone:</label>
+            <input type="tel" id="phone" name="phone" placeholder="Your Phone Number" 
+                   style="width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px;" required>
+            
+      
+            <label for="date" style="font-weight: bold;">Date of Stay:</label>
+            <input type="date" id="date" name="date" 
+                   style="width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px;" required>
+            
+          
+            <button type="submit" style="width: 100%; padding: 10px; background-color: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">Submit</button>
+          </form>
+        </div>
+        
+
+        <div id="popupMessage" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: white; color: black; padding: 20px; border-radius: 10px; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); text-align: center; z-index: 100;">
+          <h3>Booking Successful!</h3>
+          <p>Thank you for your reservation. We will contact you soon!</p>
+          <button onclick="closePopup()" style="padding: 10px 20px; background-color: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer;">Close</button>
+        </div>
+        
+        <script>
+        
+          function showPopup(event) {
+            event.preventDefault(); 
+            document.getElementById('popupMessage').style.display = 'block';
+          }
+        
+          function closePopup() {
+            document.getElementById('popupMessage').style.display = 'none'; 
+            document.getElementById('bookingForm').reset(); 
+          }
+        
+          
+          document.getElementById("bookNow1").addEventListener("click", function () {
+            document.getElementById("package").value = "Package 1";
+            document.getElementById("booking").scrollIntoView({ behavior: "smooth" });
+          });
+        
+          document.getElementById("bookNow2").addEventListener("click", function () {
+            document.getElementById("package").value = "Package 2";
+            document.getElementById("booking").scrollIntoView({ behavior: "smooth" });
+          });
+        
+          document.getElementById("bookNow3").addEventListener("click", function () {
+            document.getElementById("package").value = "Package 3";
+            document.getElementById("booking").scrollIntoView({ behavior: "smooth" });
+          });
+        </script>
+        
+
+
+<script>
+  
+  document.getElementById("bookNow1").addEventListener("click", function() {
+    window.location.href = "#booking"; 
+  });
+  
+  document.getElementById("bookNow2").addEventListener("click", function() {
+    window.location.href = "#booking"; 
+  });
+  
+  document.getElementById("bookNow3").addEventListener("click", function() {
+    window.location.href = "#booking"; 
+  });
+  </script>
+
+  <script>
+    window.onload = function() {
+      
+      document.getElementById('subText').classList.add('visible');
+      document.getElementById('mainText').classList.add('visible');
+    }
+  </script>
+  
+</body>
+</html>
